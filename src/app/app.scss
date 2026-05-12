@@ -1,0 +1,75 @@
+.app-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 240px;
+  background: #1e293b;
+  color: white;
+}
+
+.sidenav-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo-icon {
+  color: #3b82f6;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.active-link {
+  background: rgba(59, 130, 246, 0.2) !important;
+  border-left: 3px solid #3b82f6;
+  color: #3b82f6 !important;
+}
+
+.toolbar {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.toolbar-title {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.main-content {
+  background: #f8fafc;
+}
+
+.content {
+  padding: 24px;
+}
+
+/*Angular material styling*/
+
+::ng-deep .sidenav .mat-mdc-list-item {
+  transition: 0.2s;
+}
+
+::ng-deep .sidenav .mat-mdc-list-item:hover {
+  background-color: #3B82F6 !important;
+}
+
+::ng-deep .mat-mdc-list-item .mdc-list-item__primary-text {
+  color: white !important;
+}
+
+::ng-deep .sidenav .mat-mdc-list-item .mat-icon {
+  color: white !important;
+}
