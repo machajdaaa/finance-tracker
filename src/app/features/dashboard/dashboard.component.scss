@@ -1,0 +1,60 @@
+.dashboard {
+  max-width: 75rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 48rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summary-card {
+  border-radius: 0.75rem !important;
+}
+
+.card-label {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.card-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.balance-card {
+  border-top: 0.25rem solid #3b82f6;
+}
+
+.income-card {
+  border-top: 0.25rem solid #22c55e;
+}
+
+.expense-card {
+  border-top: 0.25rem solid #ef4444;
+}
+
+/* Chart styling */
+.chart-card {
+  border-radius: 0.75rem !important;
+  margin-bottom: 1.5rem;
+}
+
+.chart-content {
+  height: 20rem;
+  padding-top: 1rem;
+}

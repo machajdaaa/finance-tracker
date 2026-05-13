@@ -1,0 +1,41 @@
+<div class="dashboard">
+  <h1 class="page-title">Dashboard</h1>
+
+  <!-- Summary cards -->
+  <div class="cards-grid">
+    <mat-card class="summary-card balance-card">
+      <mat-card-content>
+        <p class="card-label">Zůstatek</p>
+        <p class="card-amount">{{ balance() | currency:'CZK':'symbol':'1.0-0':'cs' }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card income-card">
+      <mat-card-content>
+        <p class="card-label">Příjmy</p>
+        <p class="card-amount">{{ income() | currency:'CZK':'symbol':'1.0-0':'cs' }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card expense-card">
+      <mat-card-content>
+        <p class="card-label">Výdaje</p>
+        <p class="card-amount">{{ expenses() | currency:'CZK':'symbol':'1.0-0':'cs' }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="chart-card">
+    <mat-card-header>
+      <mat-card-title>Přehled příjmů a výdajů</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="chart-content">
+      <canvas
+        baseChart
+        [data]="chartData"
+        [options]="chartOptions"
+        [type]="'line'">
+      </canvas>
+    </mat-card-content>
+  </mat-card>
+</div>
