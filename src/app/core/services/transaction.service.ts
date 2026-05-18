@@ -1,6 +1,7 @@
 import {Transaction, TransactionCategory, TransactionType} from "../models/transaction.model";
 import {computed, Injectable, signal} from '@angular/core';
 import {BehaviorSubject, combineLatest, debounceTime, map} from 'rxjs';
+import {toObservable} from '@angular/core/rxjs-interop';
 
 export interface TransactionFilter {
   search: string;
@@ -42,13 +43,14 @@ export class TransactionService {
 
   readonly filteredTransactions$ = combineLatest([
     this.filter$.pipe(debounceTime(300)),
+    toObservable(this._transactions),
   ]).pipe(
     map(([filter]) => {
       return this._transactions().filter(t => {
         const matchesSearch =
           t.description.toLowerCase().includes(filter.search.toLowerCase());
         const matchesType = filter.type ==='all' || t.type === filter.type;
-        const matchesCategory = filter.category && filter.category !== 'all';
+        const matchesCategory = filter.category === 'all' || t.category === filter.category;
         return matchesSearch && matchesType && matchesCategory;
       });
     })
@@ -65,7 +67,7 @@ export class TransactionService {
   }
 
   deleteTransaction(id: string): void {
-    this._transactions.update(transactions => transactions.filter(t => t.id === id));
+    this._transactions.update(transactions => transactions.filter(t => t.id !== id));
     this.saveToStorage()
   }
 
@@ -76,7 +78,7 @@ export class TransactionService {
   private saveToStorage(): void {
     localStorage.setItem(
       this.STORAGE_KEY,
-      JSON.stringify(this._transactions)
+      JSON.stringify(this._transactions())
     )
   }
 

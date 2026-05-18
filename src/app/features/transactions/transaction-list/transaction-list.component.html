@@ -1,0 +1,56 @@
+<div class="p-6 max-w-6xl">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-semibold text-slate-800">Transakce</h1>
+    <button mat-raised-button color="primary" (click)="openAddDialog()">
+      <mat-icon>add</mat-icon>
+      Přidat transakci
+    </button>
+  </div>
+
+  <mat-table [dataSource]="(transactions$ | async) ?? []" class="w-full rounded-xl overflow-hidden shadow-sm">
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef>Datum</mat-header-cell>
+      <mat-cell *matCellDef="let t">{{ t.date | date: 'd. M. yyyy' }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef>Popis</mat-header-cell>
+      <mat-cell *matCellDef="let t">{{ t.description }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef>Kategorie</mat-header-cell>
+      <mat-cell *matCellDef="let t">
+        <mat-chip>{{ getTransactionLabel(t.category) }}</mat-chip>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef>Částka</mat-header-cell>
+      <mat-cell *matCellDef="let t"
+      [class.text-green-600]="t.type === 'income'"
+      [class.text-red-600]="t.type == 'expense'">
+        {{ t.type === 'income' ? '+' : '-' }} {{ t.amount | currency:'CZK':'symbol':'1.0-0' }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let t">
+        <button mat-icon-button color="warn" (click)="deleteTransaction(t.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell text-center text-slate-400 py-8" colspan="5">
+        Žádné transakce
+      </td>
+    </tr>
+
+  </mat-table>
+</div>

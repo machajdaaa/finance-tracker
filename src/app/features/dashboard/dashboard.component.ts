@@ -1,7 +1,6 @@
-import { Component, inject, LOCALE_ID } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TransactionService } from '../../core/services/transaction.service';
-import { CommonModule, CurrencyPipe, registerLocaleData } from '@angular/common';
-import localCs from '@angular/common/locales/cs';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart, registerables } from 'chart.js';
@@ -16,11 +15,11 @@ Chart.register(...registerables);
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
-  private _transactionService = inject(TransactionService)
+  private transactionService = inject(TransactionService)
 
-  expenses = this._transactionService.totalExpenses;
-  income = this._transactionService.totalIncome;
-  balance = this._transactionService.balance;
+  expenses = this.transactionService.totalExpenses;
+  income = this.transactionService.totalIncome;
+  balance = this.transactionService.balance;
 
   chartOptions = FINANCE_CHART_OPTIONS;
   chartData = FINANCE_CHART_DATA;
