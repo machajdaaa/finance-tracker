@@ -15,6 +15,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/transactions/transaction-list/transaction-list.component').then(m => m.TransactionListComponent),
   },
   {
+    path: 'statistics',
+    loadComponent: () => import('./features/statistics/statistics.component').then(m => m.StatisticsComponent),
+  },
+  {
     path: '**',
     redirectTo: 'dashboard',
   }

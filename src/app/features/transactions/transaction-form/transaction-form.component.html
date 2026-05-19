@@ -4,7 +4,7 @@
 
   <!-- Typ -->
   <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Typ</mat-label>
+    <mat-label class="mt-4">Typ</mat-label>
     <mat-select formControlName="type">
       @for (type of types; track type.value) {
         <mat-option [value]="type.value">{{ type.label }}</mat-option>

@@ -43,3 +43,16 @@ export function buildChartData(incomeByMonth: number[], expensesByMonth: number[
     ]
   }
 }
+
+export const CATEGORY_CHART_OPTIONS = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: { position: 'right' as const },
+  },
+};
+
+export const CATEGORY_COLORS = [
+  '#3b82f6', '#22c55e', '#ef4444', '#f59e0b',
+  '#8b5cf6', '#ec4899', '#14b8a6', '#f97316', '#64748b',
+];
