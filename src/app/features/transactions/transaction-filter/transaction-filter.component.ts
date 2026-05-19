@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
-import {TransactionService} from '../../core/services/transaction.service';
-import {CATEGORY_LABELS, TransactionCategory} from '../../core/models/transaction.model';
+import {TransactionService} from '../../../core/services/transaction.service';
+import {CATEGORY_LABELS, TransactionCategory} from '../../../core/models/transaction.model';
 import {debounceTime, distinctUntilChanged} from 'rxjs';
 import {MatFormField, MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
