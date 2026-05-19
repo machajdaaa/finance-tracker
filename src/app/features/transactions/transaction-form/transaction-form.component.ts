@@ -7,7 +7,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import {CATEGORY_LABELS, TransactionCategory, TransactionType} from '../../../core/models/transaction.model';
+import {INCOME_CATEGORY_LABELS, EXPENSE_CATEGORY_LABELS, IncomeCategory, ExpenseCategory, TransactionCategory, TransactionType} from '../../../core/models/transaction.model';
 
 @Component({
   selector: 'app-transaction-form',
@@ -30,8 +30,6 @@ export class TransactionFormComponent {
   private fb = inject(FormBuilder);
   private dialogRef = inject(MatDialogRef<TransactionFormComponent>);
 
-  categoryLabels = CATEGORY_LABELS;
-  categories = Object.keys(CATEGORY_LABELS) as TransactionCategory[];
   types: { value: TransactionType; label: string }[] = [
     { value: 'income', label: 'Příjem' },
     { value: 'expense', label: 'Výdaj' },
@@ -44,6 +42,12 @@ export class TransactionFormComponent {
     description: ['', Validators.required],
     date: [new Date(), Validators.required],
   });
+
+  constructor() {
+    this.form.get('type')?.valueChanges.subscribe(() => {
+      this.form.get('category')?.setValue('other' as TransactionCategory);
+    })
+  }
 
   submit(): void {
     if (this.form.invalid) return;
@@ -60,5 +64,21 @@ export class TransactionFormComponent {
 
   cancel(): void {
     this.dialogRef.close();
+  }
+
+  get categories() {
+    const type = this.form.get('type')?.value;
+    return type === 'income'
+    ? Object.keys(INCOME_CATEGORY_LABELS) as IncomeCategory[]
+      : Object.keys(EXPENSE_CATEGORY_LABELS) as ExpenseCategory[];
+  }
+
+  get currentCategoryLabels() {
+    const type = this.form.get('type')?.value;
+    return type === 'income' ? INCOME_CATEGORY_LABELS : EXPENSE_CATEGORY_LABELS;
+  }
+
+  getCategoryLabel(category: string): string {
+    return (this.currentCategoryLabels as Record<string, string>)[category];
   }
 }

@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-transaction-filter',
+  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatFormField,

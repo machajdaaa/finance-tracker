@@ -12,6 +12,7 @@ import {TransactionFilterComponent} from '../transaction-filter/transaction-filt
 
 @Component({
   selector: 'app-transaction-list',
+  standalone: true,
   imports: [
     AsyncPipe,
     CurrencyPipe,
