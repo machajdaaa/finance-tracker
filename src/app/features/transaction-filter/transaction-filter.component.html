@@ -1,0 +1,30 @@
+<div [formGroup]="form" class="flex gap-4 mb-6 flex-wrap">
+
+  <!-- Search -->
+  <mat-form-field appearance="outline" class="grow min-w-80">
+    <mat-label>Hledat</mat-label>
+    <input matInput formControlName="search">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <!-- Type -->
+  <mat-form-field appearance="outline" class="min-w-80">
+    <mat-label>Typ</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value="all">Vše</mat-option>
+      <mat-option value="income">Příjmy</mat-option>
+      <mat-option value="expense">Výdaje</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Category -->
+  <mat-form-field appearance="outline" class="min-w-80">
+    <mat-label>Kategorie</mat-label>
+    <mat-select formControlName="category">
+      <mat-option value="all">Vše</mat-option>
+      @for (category of categories; track category) {
+        <mat-option [value]="category">{{ categoryLabels[category] }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>

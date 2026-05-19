@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDialog} from '@angular/material/dialog';
 import {TransactionFormComponent} from '../transaction-form/transaction-form.component';
+import {TransactionFilterComponent} from '../../transaction-filter/transaction-filter.component';
 
 @Component({
   selector: 'app-transaction-list',
@@ -19,6 +20,7 @@ import {TransactionFormComponent} from '../transaction-form/transaction-form.com
     MatButtonModule,
     MatIconModule,
     MatChipsModule,
+    TransactionFilterComponent
   ],
   templateUrl: './transaction-list.component.html',
   styleUrl: './transaction-list.component.scss',

@@ -15,7 +15,7 @@ export interface TransactionFilter {
 export class TransactionService {
   private readonly STORAGE_KEY = 'finance_tracker_transactions';
 
-  //Signals - hlavní state
+  //Signals - main state
   private _transactions = signal<Transaction[]>(this.loadFromStorage());
 
   readonly transactions = this._transactions.asReadonly();
@@ -34,7 +34,7 @@ export class TransactionService {
 
   readonly balance = computed(() => this.totalIncome() - this.totalExpenses());
 
-  //RxJS - filtrování
+  //RxJS - filtering
   readonly filter$ = new BehaviorSubject<TransactionFilter>({
     search: '',
     type: 'all',

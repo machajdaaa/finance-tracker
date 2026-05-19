@@ -4,7 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {BreakpointObserver} from '@angular/cdk/layout';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {map} from 'rxjs';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
@@ -31,8 +31,8 @@ export class AppComponent {
   readonly navItems = NAV_ITEMS;
 
   isMobile = toSignal(
-    this.breakPointObserver.observe(Breakpoints.Handset).pipe(
+    this.breakPointObserver.observe('(max-width: 768px)').pipe(
       map(result => result.matches)
     )
-  )
+  );
 }

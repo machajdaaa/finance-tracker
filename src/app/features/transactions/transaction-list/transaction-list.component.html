@@ -7,7 +7,9 @@
     </button>
   </div>
 
-  <mat-table [dataSource]="(transactions$ | async) ?? []" class="w-full rounded-xl overflow-hidden shadow-sm">
+  <app-transaction-filter/>
+
+  <mat-table [dataSource]="(transactions$ | async) ?? []" class="w-full rounded-xl overflow-auto shadow-sm">
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef>Datum</mat-header-cell>
       <mat-cell *matCellDef="let t">{{ t.date | date: 'd. M. yyyy' }}</mat-cell>
