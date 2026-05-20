@@ -32,7 +32,7 @@
     <mat-card-content class="chart-content">
       <canvas
         baseChart
-        [data]="chartData"
+        [data]="chartData()"
         [options]="chartOptions"
         [type]="'line'">
       </canvas>

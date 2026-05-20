@@ -35,14 +35,16 @@ export class TransactionService {
   readonly balance = computed(() => this.totalIncome() - this.totalExpenses());
 
   //RxJS - filtering
-  readonly filter$ = new BehaviorSubject<TransactionFilter>({
+  private readonly _filter$ = new BehaviorSubject<TransactionFilter>({
     search: '',
     type: 'all',
     category: 'all'
-  })
+  });
+
+  readonly filter$ = this._filter$.asObservable();
 
   readonly filteredTransactions$ = combineLatest([
-    this.filter$.pipe(debounceTime(300)),
+    this._filter$.pipe(debounceTime(300)),
     toObservable(this._transactions),
   ]).pipe(
     map(([filter]) => {
@@ -72,7 +74,7 @@ export class TransactionService {
   }
 
   updateFilter(filter: Partial<TransactionFilter>): void {
-    this.filter$.next({ ...this.filter$.value, ...filter })
+    this._filter$.next({ ...this._filter$.value, ...filter });
   }
 
   private saveToStorage(): void {
@@ -83,7 +85,11 @@ export class TransactionService {
   }
 
   private loadFromStorage(): Transaction[] {
-    const data = localStorage.getItem(this.STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    try {
+      const data = localStorage.getItem(this.STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch {
+      return [];
+    }
   }
 }

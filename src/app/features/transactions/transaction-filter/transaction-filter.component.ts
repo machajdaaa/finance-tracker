@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TransactionService } from '../../../core/services/transaction.service';
-import { EXPENSE_CATEGORIES, INCOME_CATEGORIES, TransactionCategory } from '../../../core/models/transaction.model';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { EXPENSE_CATEGORIES, INCOME_CATEGORIES, TransactionCategory, TransactionType } from '../../../core/models/transaction.model';
+import { distinctUntilChanged } from 'rxjs';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
@@ -39,13 +40,13 @@ export class TransactionFilterComponent {
 
   constructor() {
     this.form.valueChanges.pipe(
-      debounceTime(300),
       distinctUntilChanged(),
+      takeUntilDestroyed(),
     ).subscribe(value => {
       this.transactionService.updateFilter({
         search: value.search ?? '',
-        type: value.type as any,
-        category: value.category as any,
+        type: (value.type ?? 'all') as TransactionType | 'all',
+        category: (value.category ?? 'all') as TransactionCategory | 'all',
       });
     });
   }

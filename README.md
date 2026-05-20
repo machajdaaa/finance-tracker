@@ -1,59 +1,56 @@
-# FinanceTracker
+# Finance Tracker
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+A personal finance tracking application built with modern Angular 18 architecture.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- 📊 **Dashboard** — overview of balance, income and expenses with a monthly chart
+- 💳 **Transactions** — add, delete and filter transactions by type, category and search
+- 📈 **Statistics** — expense breakdown by category (doughnut chart)
+- 💾 **Persistent storage** — data saved in localStorage
+- 🌍 **Localization** — Czech language support via ngx-translate
+- 📱 **Responsive** — mobile-friendly with collapsible sidenav
+
+## Tech Stack
+
+- **Angular 18** — standalone components, Signals, lazy loading
+- **RxJS** — reactive filtering with BehaviorSubject and debounceTime
+- **Angular Material** — UI components
+- **Tailwind CSS** — utility-first styling
+- **Chart.js + ng2-charts** — data visualization
+- **ngx-translate** — internationalization
+
+## Architecture Highlights
+
+- **Signals** for state management in TransactionService
+- **RxJS** for real-time filtering with debounce
+- **OnPush** change detection strategy across all components
+- **Feature-based** folder structure
+- **Standalone components** throughout
+
+## Getting Started
 
 ```bash
+# Clone the repository
+git clone https://github.com/machajdaaa/finance-tracker.git
+cd finance-tracker
+
+# Install dependencies
+npm install
+
+# Run development server
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open `http://localhost:4200`
 
-## Code scaffolding
+## Screenshots
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
 
-```bash
-ng generate component component-name
-```
+### Transactions
+![Transactions](screenshots/transactions.png)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Statistics
+![Statistics](screenshots/statistics.png)

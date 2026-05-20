@@ -6,12 +6,14 @@ export const FINANCE_CHART_OPTIONS = {
   },
 }
 
+const MONTH_LABELS = ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čer', 'Čvc', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'];
+
 export const FINANCE_CHART_DATA = {
-  labels: ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čer', ],
+  labels: MONTH_LABELS,
   datasets: [
     {
       label: 'Příjmy',
-      data: [0, 0, 0, 0, 0, 0],
+      data: new Array(12).fill(0),
       borderColor: '#22c55e',
       backgroundColor: 'rgba(34, 197, 94, 0.1)',
       fill: true,
@@ -19,7 +21,7 @@ export const FINANCE_CHART_DATA = {
     },
     {
       label: 'Výdaje',
-      data: [0, 0, 0, 0, 0, 0],
+      data: new Array(12).fill(0),
       borderColor: '#ef4444',
       backgroundColor: 'rgba(239, 68, 68, 0.1)',
       fill: true,
@@ -30,7 +32,7 @@ export const FINANCE_CHART_DATA = {
 
 export function buildChartData(incomeByMonth: number[], expensesByMonth: number[]): typeof FINANCE_CHART_DATA {
   return {
-    labels: ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čer', 'Čvc', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'],
+    labels: MONTH_LABELS,
     datasets: [
       {
         ...FINANCE_CHART_DATA.datasets[0],

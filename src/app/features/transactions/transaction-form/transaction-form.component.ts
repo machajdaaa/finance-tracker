@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -46,7 +47,9 @@ export class TransactionFormComponent {
   });
 
   constructor() {
-    this.form.get('type')?.valueChanges.subscribe(() => {
+    this.form.get('type')?.valueChanges.pipe(
+      takeUntilDestroyed(),
+    ).subscribe(() => {
       this.form.get('category')?.setValue('other' as TransactionCategory);
     });
   }

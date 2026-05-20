@@ -7,7 +7,7 @@
     </mat-card-header>
     <mat-card-content class="h-80 pt-4">
       <canvas baseChart
-      [data]="categoryChartData"
+      [data]="categoryChartData()"
       [options]="categoryChartOptions"
       [type]="'doughnut'">
       </canvas>
