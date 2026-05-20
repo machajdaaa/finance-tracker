@@ -41,18 +41,3 @@ body {
 }
 /* You can add global styles to this file, and also import other style files */
 
-.sidenav .mat-mdc-list-item {
-  transition: background-color 0.2s;
-}
-
-.sidenav .mat-mdc-list-item:hover {
-  background-color: #3b82f6;
-}
-
-.mat-mdc-list-item .mdc-list-item__primary-text {
-  color: white;
-}
-
-.sidenav .mat-mdc-list-item .mat-icon {
-  color: white;
-}
