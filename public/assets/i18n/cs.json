@@ -1,0 +1,53 @@
+{
+  "NAV": {
+    "DASHBOARD": "Dashboard",
+    "TRANSACTIONS": "Transakce",
+    "STATISTICS": "Statistiky"
+  },
+  "DASHBOARD": {
+    "TITLE": "Dashboard",
+    "BALANCE": "Zůstatek celkem",
+    "INCOME": "Příjmy celkem",
+    "EXPENSES": "Výdaje celkem",
+    "CHART_TITLE": "Přehled příjmů a výdajů za tento rok"
+  },
+  "TRANSACTIONS": {
+    "TITLE": "Transakce",
+    "ADD": "Přidat transakci",
+    "DATE": "Datum",
+    "DESCRIPTION": "Popis",
+    "CATEGORY": "Kategorie",
+    "AMOUNT": "Částka",
+    "NO_DATA": "Žádné transakce",
+    "SEARCH": "Hledat",
+    "TYPE": "Typ",
+    "ALL": "Vše",
+    "INCOME": "Příjem",
+    "EXPENSE": "Výdaj"
+  },
+  "STATISTICS": {
+    "TITLE": "Statistiky",
+    "BY_CATEGORY": "Výdaje podle kategorie"
+  },
+  "FORM": {
+    "TITLE": "Přidat transakci",
+    "TYPE": "Typ",
+    "CATEGORY": "Kategorie",
+    "AMOUNT": "Částka (Kč)",
+    "DESCRIPTION": "Popis",
+    "DATE": "Datum",
+    "CANCEL": "Zrušit",
+    "SUBMIT": "Přidat"
+  },
+  "CATEGORIES": {
+    "food": "Jídlo",
+    "transport": "Doprava",
+    "housing": "Bydlení",
+    "entertainment": "Zábava",
+    "health": "Zdraví",
+    "shopping": "Nákupy",
+    "salary": "Plat",
+    "freelance": "Freelance",
+    "other": "Ostatní"
+  }
+}

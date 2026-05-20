@@ -9,6 +9,7 @@ import {toSignal} from '@angular/core/rxjs-interop';
 import {map} from 'rxjs';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import { NAV_ITEMS } from './core/constants/nav-items';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import { NAV_ITEMS } from './core/constants/nav-items';
     MatButtonModule,
     RouterOutlet,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    TranslateModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -29,6 +31,10 @@ import { NAV_ITEMS } from './core/constants/nav-items';
 export class AppComponent {
   private breakPointObserver = inject(BreakpointObserver);
   readonly navItems = NAV_ITEMS;
+
+  constructor() {
+    inject(TranslateService).use('cs');
+  }
 
   isMobile = toSignal(
     this.breakPointObserver.observe('(max-width: 768px)').pipe(

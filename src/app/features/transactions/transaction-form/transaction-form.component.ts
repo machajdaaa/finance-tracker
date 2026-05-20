@@ -1,13 +1,14 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {INCOME_CATEGORY_LABELS, EXPENSE_CATEGORY_LABELS, IncomeCategory, ExpenseCategory, TransactionCategory, TransactionType} from '../../../core/models/transaction.model';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { INCOME_CATEGORIES, EXPENSE_CATEGORIES, TransactionCategory, TransactionType } from '../../../core/models/transaction.model';
 
 @Component({
   selector: 'app-transaction-form',
@@ -21,6 +22,7 @@ import {INCOME_CATEGORY_LABELS, EXPENSE_CATEGORY_LABELS, IncomeCategory, Expense
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    TranslateModule,
   ],
   templateUrl: './transaction-form.component.html',
   styleUrl: './transaction-form.component.scss',
@@ -30,9 +32,9 @@ export class TransactionFormComponent {
   private fb = inject(FormBuilder);
   private dialogRef = inject(MatDialogRef<TransactionFormComponent>);
 
-  types: { value: TransactionType; label: string }[] = [
-    { value: 'income', label: 'Příjem' },
-    { value: 'expense', label: 'Výdaj' },
+  types: { value: TransactionType; labelKey: string }[] = [
+    { value: 'income', labelKey: 'TRANSACTIONS.INCOME' },
+    { value: 'expense', labelKey: 'TRANSACTIONS.EXPENSE' },
   ];
 
   form = this.fb.group({
@@ -46,7 +48,12 @@ export class TransactionFormComponent {
   constructor() {
     this.form.get('type')?.valueChanges.subscribe(() => {
       this.form.get('category')?.setValue('other' as TransactionCategory);
-    })
+    });
+  }
+
+  get categories() {
+    const type = this.form.get('type')?.value;
+    return type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
   }
 
   submit(): void {
@@ -64,21 +71,5 @@ export class TransactionFormComponent {
 
   cancel(): void {
     this.dialogRef.close();
-  }
-
-  get categories() {
-    const type = this.form.get('type')?.value;
-    return type === 'income'
-    ? Object.keys(INCOME_CATEGORY_LABELS) as IncomeCategory[]
-      : Object.keys(EXPENSE_CATEGORY_LABELS) as ExpenseCategory[];
-  }
-
-  get currentCategoryLabels() {
-    const type = this.form.get('type')?.value;
-    return type === 'income' ? INCOME_CATEGORY_LABELS : EXPENSE_CATEGORY_LABELS;
-  }
-
-  getCategoryLabel(category: string): string {
-    return (this.currentCategoryLabels as Record<string, string>)[category];
   }
 }

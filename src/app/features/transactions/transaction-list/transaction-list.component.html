@@ -1,9 +1,9 @@
 <div class="p-6 max-w-6xl">
   <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-semibold text-slate-800">Transakce</h1>
+    <h1 class="text-2xl font-semibold text-slate-800">{{ 'TRANSACTIONS.TITLE' | translate }}</h1>
     <button mat-raised-button color="primary" (click)="openAddDialog()">
       <mat-icon>add</mat-icon>
-      Přidat transakci
+      {{ 'TRANSACTIONS.ADD' | translate }}
     </button>
   </div>
 
@@ -11,24 +11,24 @@
 
   <mat-table [dataSource]="(transactions$ | async) ?? []" class="w-full rounded-xl overflow-auto shadow-sm">
     <ng-container matColumnDef="date">
-      <mat-header-cell *matHeaderCellDef>Datum</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>{{ 'TRANSACTIONS.DATE' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let t">{{ t.date | date: 'd. M. yyyy' }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef>Popis</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>{{ 'TRANSACTIONS.DESCRIPTION' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let t">{{ t.description }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="category">
-      <mat-header-cell *matHeaderCellDef>Kategorie</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>{{ 'TRANSACTIONS.CATEGORY' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let t">
-        <mat-chip>{{ getTransactionLabel(t.category) }}</mat-chip>
+        <mat-chip>{{ 'CATEGORIES.' + t.category | translate }}</mat-chip>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="amount">
-      <mat-header-cell *matHeaderCellDef>Částka</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>{{ 'TRANSACTIONS.AMOUNT' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let t"
       [class.text-green-600]="t.type === 'income'"
       [class.text-red-600]="t.type == 'expense'">
@@ -50,7 +50,7 @@
 
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell text-center text-slate-400 py-8" colspan="5">
-        Žádné transakce
+        {{ 'TRANSACTIONS.NO_DATA' | translate }}
       </td>
     </tr>
 

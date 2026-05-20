@@ -1,11 +1,12 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
-import {TransactionService} from '../../../core/services/transaction.service';
-import {CATEGORY_LABELS, TransactionCategory} from '../../../core/models/transaction.model';
-import {debounceTime, distinctUntilChanged} from 'rxjs';
-import {MatFormField, MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatIconModule} from '@angular/material/icon';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { TransactionService } from '../../../core/services/transaction.service';
+import { EXPENSE_CATEGORIES, INCOME_CATEGORIES, TransactionCategory } from '../../../core/models/transaction.model';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { MatFormField, MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transaction-filter',
@@ -15,7 +16,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormField,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    TranslateModule,
   ],
   templateUrl: './transaction-filter.component.html',
   styleUrl: './transaction-filter.component.scss',
@@ -25,8 +27,9 @@ export class TransactionFilterComponent {
   private fb = inject(FormBuilder);
   private transactionService = inject(TransactionService);
 
-  categoryLabels = CATEGORY_LABELS;
-  categories = Object.keys(CATEGORY_LABELS) as TransactionCategory[];
+  categories = [...EXPENSE_CATEGORIES, ...INCOME_CATEGORIES].filter(
+    (v, i, a) => a.indexOf(v) === i
+  ) as TransactionCategory[];
 
   form = this.fb.group({
     search: [''],

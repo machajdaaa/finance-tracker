@@ -5,12 +5,20 @@ import { MatCardModule } from '@angular/material/card';
 import { BaseChartDirective } from 'ng2-charts';
 import { Chart, registerables } from 'chart.js';
 import {FINANCE_CHART_OPTIONS, FINANCE_CHART_DATA, buildChartData} from '../../core/constants/chart-config';
+import {TranslateModule} from '@ngx-translate/core';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatCardModule, CommonModule, CurrencyPipe, BaseChartDirective],
+  standalone: true,
+  imports: [
+    MatCardModule,
+    CommonModule,
+    CurrencyPipe,
+    BaseChartDirective,
+    TranslateModule,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

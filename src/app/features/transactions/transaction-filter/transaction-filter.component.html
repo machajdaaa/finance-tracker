@@ -2,29 +2,30 @@
 
   <!-- Search -->
   <mat-form-field appearance="outline" class="grow min-w-80">
-    <mat-label>Hledat</mat-label>
+    <mat-label>{{ 'TRANSACTIONS.SEARCH' | translate }}</mat-label>
     <input matInput formControlName="search">
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 
   <!-- Type -->
   <mat-form-field appearance="outline" class="min-w-80">
-    <mat-label>Typ</mat-label>
+    <mat-label>{{ 'TRANSACTIONS.TYPE' | translate }}</mat-label>
     <mat-select formControlName="type">
-      <mat-option value="all">Vše</mat-option>
-      <mat-option value="income">Příjmy</mat-option>
-      <mat-option value="expense">Výdaje</mat-option>
+      <mat-option value="all">{{ 'TRANSACTIONS.ALL' | translate }}</mat-option>
+      <mat-option value="income">{{ 'TRANSACTIONS.INCOME' | translate }}</mat-option>
+      <mat-option value="expense">{{ 'TRANSACTIONS.EXPENSE' | translate }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <!-- Category -->
   <mat-form-field appearance="outline" class="min-w-80">
-    <mat-label>Kategorie</mat-label>
+    <mat-label>{{ 'TRANSACTIONS.CATEGORY' | translate }}</mat-label>
     <mat-select formControlName="category">
-      <mat-option value="all">Vše</mat-option>
+      <mat-option value="all">{{ 'TRANSACTIONS.ALL' | translate }}</mat-option>
       @for (category of categories; track category) {
-        <mat-option [value]="category">{{ categoryLabels[category] }}</mat-option>
+        <mat-option [value]="category">{{ 'CATEGORIES.' + category | translate }}</mat-option>
       }
     </mat-select>
   </mat-form-field>
+
 </div>
