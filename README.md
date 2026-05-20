@@ -13,7 +13,7 @@ A personal finance tracking application built with modern Angular 18 architectur
 
 ## Tech Stack
 
-- **Angular 18** — standalone components, Signals, lazy loading
+- **Angular 21** — standalone components, Signals, lazy loading
 - **RxJS** — reactive filtering with BehaviorSubject and debounceTime
 - **Angular Material** — UI components
 - **Tailwind CSS** — utility-first styling
